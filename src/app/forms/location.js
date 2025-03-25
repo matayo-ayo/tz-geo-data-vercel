@@ -15,6 +15,8 @@ export default function Location() {
             id="region"
             className="w-full px-4 py-2 border border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-600/50 outline-none transition-all"
             placeholder="e.g. Dar Es Salaam"
+            require
+            minLength={4}
           />
         </div>
 
@@ -31,6 +33,8 @@ export default function Location() {
             id="district"
             className="w-full px-4 py-2 border border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-600/50 outline-none transition-all"
             placeholder="e.g. Kinondoni"
+            require
+            minLength={4}
           />
         </div>
 
@@ -47,6 +51,8 @@ export default function Location() {
             id="ward"
             className="w-full px-4 py-2 border border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-600/50 outline-none transition-all"
             placeholder="e.g. Mwananyamala"
+            require
+            minLength={4}
           />
         </div>
 
@@ -54,7 +60,7 @@ export default function Location() {
           type="submit"
           className="w-full bg-blue-800 mt-5 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
         >
-            Search
+          Search
         </button>
       </form>
     </>
