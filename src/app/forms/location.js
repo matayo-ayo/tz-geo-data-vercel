@@ -195,7 +195,6 @@ export default function Location() {
 
         {/* Submit Button */}
         <button
-          type="submit"
           className={`w-full bg-blue-800 mt-5 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 ${
             isLoading ? "opacity-20 cursor-not-allowed" : ""
           }`}
