@@ -1,6 +1,6 @@
 "use client";
 
-import Header from "./partials/header";
+import Header from "./components/header";
 import Location from "./forms/location";
 import Postcode from "./forms/postcode";
 import { useState } from "react";

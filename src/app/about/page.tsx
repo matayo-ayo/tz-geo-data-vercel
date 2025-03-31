@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Header from "../partials/header";
+import Header from "../components/header";
 
 const page = () => {
   return (
@@ -27,9 +27,10 @@ const page = () => {
         <p>
           With an extensive database covering all regions, districts, wards,
           streets, and their corresponding postcodes, TZ Geo Data simplifies
-          access to administrative and postal code data. Whether you are building
-          an e-commerce platform, logistics system, or location-based service,
-          this package ensures reliable and up-to-date geospatial information
+          access to administrative and postal code data. Whether you are
+          building an e-commerce platform, logistics system, or location-based
+          service, this package ensures reliable and up-to-date geospatial
+          information
         </p>
 
         <p>

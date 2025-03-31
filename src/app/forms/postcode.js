@@ -78,7 +78,7 @@ export default function Postcode() {
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-gray-500">No specific places listed</p>
+                    <p className="dak:text-gray-500">No specific places listed</p>
                   )}
                 </div>
               </div>
@@ -95,7 +95,7 @@ export default function Postcode() {
         <div>
           <label
             htmlFor="postcode"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block text-sm font-medium mb-1"
           >
             Postcode
           </label>
