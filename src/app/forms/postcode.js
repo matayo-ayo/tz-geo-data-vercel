@@ -100,7 +100,7 @@ export default function Postcode() {
             Postcode
           </label>
           <input
-            type="text"
+            type="number"
             name="postcode"
             id="postcode"
             className="w-full px-4 py-2 border border-gray-500 rounded-lg focus:ring-2 focus:ring-green-600/50 outline-none transition-all"
