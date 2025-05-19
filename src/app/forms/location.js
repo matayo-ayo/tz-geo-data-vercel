@@ -102,7 +102,7 @@ export default function Location() {
 
   return (
     <>
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-4 text-gray-200" onSubmit={handleSubmit}>
         {/* Region Selection */}
         <div>
           <label
