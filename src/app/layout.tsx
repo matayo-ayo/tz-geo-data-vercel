@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "../app/components/themeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +16,7 @@ export const metadata: Metadata = {
   title: "tz geo data",
   description:
     "Find postcode and location using this geolocation webtool geolocation data",
+  authors: [{ name: "Matayo Ayo" }],
 };
 
 export default function RootLayout({
@@ -27,9 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-gray-800 text-gray-200 ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-200`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   );
