@@ -51,7 +51,7 @@ export default function Location() {
         <p>{`${geoData.region} > ${geoData.ward}`}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-green-700/50 p-4 rounded-lg">
+          <div className="bg-green-700/50 p-4 text-gray-200 rounded-lg">
             <h3 className="font-semibold text-lg mb-2">Region</h3>
             <p>
               {geoData.region} ({geoData.regionPostcode})
