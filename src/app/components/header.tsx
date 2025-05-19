@@ -1,16 +1,16 @@
 "use client";
 
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const Header = () => {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  // const { theme, setTheme } = useTheme();
+  // const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
   return (
     <div className="mx-2">
@@ -25,14 +25,14 @@ const Header = () => {
               About
             </Link>
 
-            {mounted && (
+            {/* {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className="p-2"
               >
                 {theme === "dark" ? "☀" : "🌙"}
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </nav>
