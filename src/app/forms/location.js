@@ -89,7 +89,7 @@ export default function Location() {
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-gray-500">No specific places listed</p>
+                    <p>No specific places listed</p>
                   )}
                 </div>
               </div>
@@ -107,7 +107,7 @@ export default function Location() {
         <div>
           <label
             htmlFor="region"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block text-sm font-medium mb-1"
           >
             Region name
           </label>
@@ -121,7 +121,7 @@ export default function Location() {
               setDistrict("");
               setWard("");
             }}
-            className="w-full px-4 py-2 border border-gray-500 rounded-lg bg-gray-950 outline-none transition-all"
+            className="w-full px-4 py-2 border border-gray-500 rounded-lg outline-none transition-all"
           >
             <option value="" disabled hidden>
               -- Select region --
@@ -138,7 +138,7 @@ export default function Location() {
         <div>
           <label
             htmlFor="district"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block text-sm font-medium mb-1"
           >
             District name
           </label>
@@ -151,7 +151,7 @@ export default function Location() {
               setDistrict(e.target.value);
               setWard("");
             }}
-            className="w-full px-4 py-2 border border-gray-500 rounded-lg bg-gray-950 outline-none transition-all"
+            className="w-full px-4 py-2 border border-gray-500 rounded-lg outline-none transition-all"
             disabled={!region}
           >
             <option value="" disabled hidden>
@@ -169,7 +169,7 @@ export default function Location() {
         <div>
           <label
             htmlFor="ward"
-            className="block text-sm font-medium text-gray-400 mb-1"
+            className="block text-sm font-medium mb-1"
           >
             Ward name
           </label>
@@ -179,7 +179,7 @@ export default function Location() {
             id="ward"
             value={ward}
             onChange={(e) => setWard(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-500 rounded-lg bg-gray-950 outline-none transition-all"
+            className="w-full px-4 py-2 border border-gray-500 rounded-lg outline-none transition-all"
             disabled={!district} // Disable if no district is selected
           >
             <option value="" disabled hidden>
@@ -207,12 +207,12 @@ export default function Location() {
 
       {/* Modal  */}
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <div className="p-4 bg-green-950 overflow-y-auto scrollbar-hide">
+        <div className="p-4 overflow-y-auto scrollbar-hide">
           {renderGeoData()}
           <div className="mt-6 text-center">
             <button
               onClick={closeModal}
-              className="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200"
+              className="text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200"
             >
               Close
             </button>
