@@ -1,7 +1,9 @@
 {
-  "name": "hello-world",
+  "name": "tz-geo-data",
   "version": "1.0.0",
   "private": true,
+  "keywords": ["tanzania", "ramani", "geo", "data", "tz", "tz-geo-data", "mikoa", "wilaya", "mitaa", "location", "api", "postcode", "postikodi"],
+  "author": {"name": "Matayo Ayo", "url": "https://github.com/matayo-ayo"},
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

@@ -24,18 +24,18 @@ export default function Home() {
                 setSearchFprm("location");
               }}
               type="button"
-              className="py-3 text-center uppercase bg-blue-900 font-bold"
+              className="py-3 text-center uppercase bg-blue-900 font-bold text-gray-300"
             >
-              Location
+              Ramani
             </button>
             <button
               onClick={() => {
                 setSearchFprm("postcode");
               }}
               type="button"
-              className="py-3 text-center uppercase bg-green-900 font-bold"
+              className="py-3 text-center uppercase bg-green-900 font-bold text-gray-300"
             >
-              Postcode
+              Postikodi
             </button>
           </div>
 
