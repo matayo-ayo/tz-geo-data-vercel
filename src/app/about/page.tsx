@@ -22,32 +22,16 @@ const page = () => {
 
         <h1 className="font-bold text-2xl mt-8">Chagua <Link href="https://www.npmjs.com/package/tz-geo-data" className="font-semibold text-blue-600">tz-geo-data</Link></h1>
         <ul className="space-y-1 list-none">
-          <li>Data za kina na sahihi</li>
-          <li>Muundo rahisi na bora kwa developers</li>
-          <li>Nzuri kwa matumizi ya kibiashara na binafsi</li>
-          <li>Ndogo na nyepesi haileti uzito katika programu</li>
+          <li>👉 Data za kina na sahihi</li>
+          <li>👉 Muundo rahisi na bora kwa developers</li>
+          <li>👉 Nzuri kwa matumizi ya kibiashara na binafsi</li>
+          <li>👉 Ndogo na nyepesi haileti uzito katika programu</li>
         </ul>
 
         <h1 className="font-bold text-2xl mt-8">Mwandishi</h1>
         <ul className="space-y-1 list-none text-sm">
-          <li>
-            Github :{" "}
-            <Link
-              href="https://github.com/matayo-ayo/"
-              className="text-blue-800"
-            >
-              Matayo Ayo
-            </Link>
-          </li>
-          <li>
-            LinkedIn :{" "}
-            <Link
-              href="https://tz.linkedin.com/in/matayoayo"
-              className="text-blue-800"
-            >
-              Matayo Ayo
-            </Link>
-          </li>
+          <li>👉 Github :{" "}<Link href="https://github.com/matayo-ayo/" className="text-blue-800">Matayo Ayo</Link></li>
+          <li>👉 LinkedIn :{" "}<Link href="https://tz.linkedin.com/in/matayoayo" className="text-blue-800">Matayo Ayo</Link></li>
         </ul>
       </main>
     </div>
