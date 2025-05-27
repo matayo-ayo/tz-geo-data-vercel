@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="text-gray-800 container mx-auto px-4 py-8 space-y-2 text-justify text-sm">
+      <main className="container mx-auto px-4 py-8 space-y-2 text-justify text-sm">
         <h1 className="font-bold text-2xl">
           Tanzania Geolocation Data{" "}
           <Link
@@ -30,8 +30,8 @@ const page = () => {
 
         <h1 className="font-bold text-2xl mt-8">Mwandishi</h1>
         <ul className="space-y-1 list-none text-sm">
-          <li>👉 Github :{" "}<Link href="https://github.com/matayo-ayo/" className="text-blue-800">Matayo Ayo</Link></li>
-          <li>👉 LinkedIn :{" "}<Link href="https://tz.linkedin.com/in/matayoayo" className="text-blue-800">Matayo Ayo</Link></li>
+          <li>👉 Github :{" "}<Link href="https://github.com/matayo-ayo/" className="text-blue-600">Matayo Ayo</Link></li>
+          <li>👉 LinkedIn :{" "}<Link href="https://tz.linkedin.com/in/matayoayo" className="text-blue-600">Matayo Ayo</Link></li>
         </ul>
       </main>
     </div>
