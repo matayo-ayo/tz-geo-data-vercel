@@ -128,13 +128,12 @@ export default function Regional() {
             <CardTitle>Search by region</CardTitle>
             <CardDescription>Tafuta mitaa kwa mkoa</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2 container">
+          <CardContent className="space-y-4 container">
             {/* Region Selection */}
             <div>
               <label htmlFor="region" className="mb-1 text-sm font-semibold">
                 Region / <span className="text-gray-500">Mkoa</span>
               </label>
-
               <Select
                 name="region"
                 id="region"
@@ -146,7 +145,7 @@ export default function Regional() {
                 }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="-- Select Region --" />
+                  <SelectValue placeholder="-- Select Region / Chagua Mikoa --" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
@@ -163,30 +162,32 @@ export default function Regional() {
 
             {/* District Selection */}
             <div>
-              <label htmlFor="district" className="block font-semibold mb-1">
-                Wilaya
+              <label htmlFor="district" className="mb-1 text-sm font-semibold">
+                District / <span className="text-gray-500">Wilaya</span>
               </label>
-              <select
-                required
+              <Select
                 name="district"
                 id="district"
                 value={district}
-                onChange={(e) => {
-                  setDistrict(e.target.value);
+                onValueChange={(e) => {
+                  setDistrict(e);
                   setWard("");
                 }}
-                className="w-full px-4 py-2 rounded-lg outline-none transition-all italic font-normal text-sm"
-                disabled={!region}
               >
-                <option value="" disabled hidden>
-                  -- Chagua Wilaya --
-                </option>
-                {districtList.map((e) => (
-                  <option key={e.postcode} value={e.name}>
-                    {e.name}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="-- Select District / Chagua Wilaya --" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Region List</SelectLabel>
+                    {districtList.map((i) => (
+                      <SelectItem value={i.name} key={i.postcode}>
+                        {i.name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Ward Selection */}
