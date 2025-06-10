@@ -126,7 +126,13 @@ export default function Regional() {
         <Card>
           <CardHeader>
             <CardTitle>Search by region</CardTitle>
-            <CardDescription>Tafuta mitaa kwa mkoa</CardDescription>
+            <CardDescription>
+              {error ? (
+                <p className="text-red-500 text-sm mt-2">{error}</p>
+              ) : (
+                "Tafuta mitaa kwa mkoa"
+              )}
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 container">
             {/* Region Selection */}
@@ -149,7 +155,7 @@ export default function Regional() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Region List</SelectLabel>
+                    <SelectLabel>Region List / Orodha ya Mikoa</SelectLabel>
                     {regionList.map((i) => (
                       <SelectItem value={i.region} key={i.postcode}>
                         {i.region}
@@ -173,13 +179,14 @@ export default function Regional() {
                   setDistrict(e);
                   setWard("");
                 }}
+                disabled={!region}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="-- Select District / Chagua Wilaya --" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Region List</SelectLabel>
+                    <SelectLabel>Districts List / Orodha ya Wilaya</SelectLabel>
                     {districtList.map((i) => (
                       <SelectItem value={i.name} key={i.postcode}>
                         {i.name}
@@ -192,28 +199,34 @@ export default function Regional() {
 
             {/* Ward Selection */}
             <div>
-              <label htmlFor="ward" className="block font-semibold mb-1">
-                Kata
+              <label htmlFor="ward" className="mb-1 text-sm font-semibold">
+                Ward / <span className="text-gray-500">Kata</span>
               </label>
-              <select
-                required
+              <Select
                 name="ward"
                 id="ward"
                 value={ward}
-                onChange={(e) => setWard(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg outline-none transition-all italic font-normal text-sm"
-                disabled={!district} // Disable if no district is selected
+                onValueChange={(e) => {
+                  setWard(e);
+                }}
+                disabled={!district}
               >
-                <option value="" disabled hidden>
-                  -- Chagua kata --
-                </option>
-                {wardList.map((e) => (
-                  <option key={e.postcode} value={e.postcode}>
-                    {e.name}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="-- Select Ward / Chagua Kata --" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Ward List / Orodha ya Kata</SelectLabel>
+                    {wardList.map((i) => (
+                      <SelectItem value={i.postcode} key={i.postcode}>
+                        {i.name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
+            <div></div>
           </CardContent>
           <CardFooter>
             <Button
@@ -221,7 +234,6 @@ export default function Regional() {
             >
               {isLoading ? "Searching" : "Search"}
             </Button>
-            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
           </CardFooter>
         </Card>
       </form>
