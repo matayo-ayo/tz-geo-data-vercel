@@ -2,7 +2,6 @@
 import Link from "next/link";
 
 const Header = () => {
-
   return (
     <div className="mx-2">
       <nav className="max-w-screen-lg mx-auto p-2 mt-4">
@@ -15,7 +14,6 @@ const Header = () => {
             <Link href="/about" className="px-3">
               About
             </Link>
-
           </div>
         </div>
       </nav>
