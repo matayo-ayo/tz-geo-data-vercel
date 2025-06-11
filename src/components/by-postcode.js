@@ -20,17 +20,6 @@ export default function Postcode() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-
-    // try {
-    //   const data = await getGeoData(postcode);
-    //   setGeoData(data);
-    //   setIsModalOpen(true);
-    // } catch (err) {
-    //   setError("Failed to fetch postcode data. Please try again.");
-    //   console.error(err);
-    // } finally {
-    //   setIsLoading(false);
-    // }
   };
 
   return (
@@ -38,7 +27,7 @@ export default function Postcode() {
       <form className="space-y-4" onSubmit={handleSubmit}>
         <Card>
           <CardHeader>
-            <CardTitle>Search by postcode</CardTitle>
+            <CardTitle>Search by Postcode</CardTitle>
             <CardDescription>
               {error ? (
                 <p className="text-red-500 text-sm mt-2">{error}</p>
