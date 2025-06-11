@@ -5,27 +5,27 @@ import { Button } from "@/components/ui/button";
 import { AlertCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function NoDatFound() {
   const route = useRouter();
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto max-w-md px-4 py-8 flex flex-col items-center justify-center min-h-[calc(100vh-50px)]">
+    <>
+      <div className="max-w-sm mx-auto w-full h-screen flex justify-center items-center transition-all">
         <Alert variant="destructive">
           <AlertCircleIcon />
-          <AlertTitle>404 | Not Found</AlertTitle>
+          <AlertTitle>Error</AlertTitle>
           <AlertDescription>
-            This page may have been moved or might never have existed.
+            Unable to proces your search
             <Button
               variant="destructive"
               onClick={() => {
-                route.back();
+                route.push("/");
               }}
             >
-              Go back
+              Try again
             </Button>
           </AlertDescription>
         </Alert>
       </div>
-    </div>
+    </>
   );
 }

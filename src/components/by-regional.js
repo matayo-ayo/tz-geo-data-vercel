@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useState } from "react";
-import { getAllRegions, getDistrictData, getWardData } from "tz-geo-data";
+import { getAllRegions } from "tz-geo-data";
 import {
   Card,
   CardContent,
@@ -20,21 +21,34 @@ import {
   SelectValue,
 } from "./ui/select";
 import { Label } from "./ui/label";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { deleteCookie, setCookie } from "cookies-next";
 
 export default function Regional() {
+  // cokies management
+  deleteCookie("regionSelected");
+
+  const route = useRouter();
   const [region, setRegion] = useState("");
-  const [district, setDistrict] = useState("");
-
   const regionList = getAllRegions() || [];
-  const districtList = region ? getDistrictData(region) || [] : [];
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError(null);
+    if (region != "") {
+      setCookie("regionSelected", region, {
+        maxAge: 60 * 1,
+      });
+      route.push(`/search`);
+    } else {
+      toast("Please select a region to continue", {
+        description: "Tafadhali chagua mkoa kuendelea.",
+      });
+      setError("Region not selected");
+      route.push("/");
+    }
   };
 
   return (
@@ -45,7 +59,9 @@ export default function Regional() {
             <CardTitle>Search by region</CardTitle>
             <CardDescription>
               {error ? (
-                <p className="text-red-500 text-sm mt-2">{error}</p>
+                <p className="text-red-500 font-semibold text-sm mt-2 animate-bounce">
+                  {error}
+                </p>
               ) : (
                 "Tafuta eneo kwa mkoa"
               )}
@@ -64,8 +80,8 @@ export default function Regional() {
                 value={region}
                 onValueChange={(e) => {
                   setRegion(e);
-                  setDistrict("");
                 }}
+                required
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="-- Select Region / Chagua Mikoa --" />
@@ -76,36 +92,6 @@ export default function Regional() {
                     {regionList.map((i) => (
                       <SelectItem value={i.region} key={i.postcode}>
                         {i.region}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* District Selection */}
-            <div>
-              <Label htmlFor="district" className="mb-1 text-sm font-semibold">
-                District / <span className="text-gray-500">Wilaya</span>
-              </Label>
-              <Select
-                name="district"
-                id="district"
-                value={district}
-                onValueChange={(e) => {
-                  setDistrict(e);
-                }}
-                disabled={!region}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="-- Select District / Chagua Wilaya --" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Districts List / Orodha ya Wilaya</SelectLabel>
-                    {districtList.map((i) => (
-                      <SelectItem value={i.name} key={i.postcode}>
-                        {i.name}
                       </SelectItem>
                     ))}
                   </SelectGroup>

@@ -1,46 +1,70 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Header from "@/components/header";
-import ByRegional from "@/components/by-regional";
-import ByPostcode from "@/components/by-postcode";
-import ByName from "@/components/by-name";
+type District = {
+  [x: string]: ReactNode;
+  district: string;
+  postcode: string;
+};
 
-import Link from "next/link";
+// type Ward = {
+//   name: string;
+//   postcode: string;
+//   streets: [];
+// };
+
+import Header from "@/components/header";
+import { useRouter } from "next/navigation";
+import { ReactNode, useEffect, useState } from "react";
+import { toast } from "sonner";
+import { getCookie, hasCookie } from "cookies-next";
+import { getDistrictData } from "tz-geo-data";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
+  const cookiesStatus = hasCookie("regionSelected");
+  const route = useRouter();
+  const region = getCookie("regionSelected");
+  const [districts, setDistricts] = useState<District[]>([]);
+
+  useEffect(() => {
+    if (cookiesStatus === false) {
+      return route.push("/");
+    }
+
+    if (!region) {
+      toast("No region specified", {
+        description: "Hakuna mkoa uliochaguliwa.",
+      });
+      route.push("/");
+    }
+
+    // Get districts
+    const districtData = getDistrictData(`${region}`);
+    if (!districtData)
+      throw new Error(`Failed to get districts from ${region}`);
+    setDistricts(districtData);
+
+    // Get wards
+    // const wardData = getWardData(`${region}`, {districtData.map((d) => )});
+  }, [region, route, cookiesStatus]);
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen px-4">
       <Header />
-      <div className="container mx-auto max-w-md px-4 py-8 flex flex-col items-center justify-center min-h-[calc(100vh-50px)]">
-        <h1 className="mb-5 font-bold text-3xl">EASY AREA LOCATOR</h1>
-        <Tabs className="w-full" defaultValue="byRegional">
-          <TabsList className="w-full gap-3 mb-5">
-            <TabsTrigger value="byRegional">Regional</TabsTrigger>
-            <TabsTrigger value="byName">Area name</TabsTrigger>
-            <TabsTrigger value="byPostcode">Postcode</TabsTrigger>
-          </TabsList>
-          <TabsContent value="byRegional">
-            <ByRegional />
-          </TabsContent>
-          <TabsContent value="byName">
-            <ByName />
-          </TabsContent>
-          <TabsContent value="byPostcode">
-            <ByPostcode />
-          </TabsContent>
-        </Tabs>
-        <p className="mt-10 text-xs italic">
-          Builded on top of{" "}
-          <Link
-            href="https://www.npmjs.com/package/tz-geo-data"
-            target="blank"
-            className="text-white px-1 pb-0.5 rounded bg-gray-600"
-          >
-            tz-geo-data
-          </Link>{" "}
-          library
-        </p>
+      <h1 className="mb-5 font-bold text-3xl text-center w-full">{region}</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        {districts.map((d) => (
+          <Card key={d.postcode}>
+            <CardHeader>
+              <CardTitle>{d.name}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Postcode: {d.postcode}
+              </p>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );
