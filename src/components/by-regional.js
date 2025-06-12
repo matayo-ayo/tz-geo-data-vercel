@@ -58,7 +58,7 @@ export default function Regional() {
         description: "Tafadhali chagua mkoa kuendelea.",
       });
       setError("Region not selected");
-      route.push("/");
+      route.push("/api/route.js");
     }
   };
 
@@ -179,7 +179,7 @@ export default function Regional() {
                       Wards in {district} / Wilaya ndani ya {region}
                     </SelectLabel>
                     {wardList.map((i) => (
-                      <SelectItem value={i.name} key={i.postcode}>
+                      <SelectItem value={`${i.postcode}`} key={i.postcode}>
                         {i.name}
                       </SelectItem>
                     ))}

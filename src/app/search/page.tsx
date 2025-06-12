@@ -1,71 +1,84 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
-type District = {
-  [x: string]: ReactNode;
-  district: string;
-  postcode: string;
-};
-
-// type Ward = {
-//   name: string;
-//   postcode: string;
-//   streets: [];
-// };
 
 import Header from "@/components/header";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
-import { toast } from "sonner";
+import { useEffect, useState } from "react";
 import { getCookie, hasCookie } from "cookies-next";
-import { getDistrictData } from "tz-geo-data";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getGeoData } from "tz-geo-data";
+
+interface SearchValues {
+  region?: string;
+  district?: string;
+  ward?: string;
+  // Add other expected properties here
+}
 
 export default function Home() {
-  const cookiesStatus = hasCookie("search");
-  const route = useRouter();
-  const region = getCookie("search");
-  const [districts, setDistricts] = useState<District[]>([]);
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const [geoData, setGeoData] = useState<any>(null);
+  const [searchValues, setSearchValues] = useState<SearchValues | null>(null);
 
   useEffect(() => {
-    if (cookiesStatus === false) {
-      return route.push("/");
+    if (!hasCookie("search")) {
+      router.push("/");
+      return;
     }
 
-    if (!region) {
-      toast("No region specified", {
-        description: "Hakuna mkoa uliochaguliwa.",
-      });
-      route.push("/");
+    try {
+      const rawSearchValues = getCookie("search");
+      const parsedValues = rawSearchValues
+        ? JSON.parse(rawSearchValues.toString())
+        : null;
+      setSearchValues(parsedValues);
+    } catch (err) {
+      console.error("Failed to parse cookie data:", err);
+      setError("Invalid search data");
     }
+  }, [router]);
 
-    // Get districts
-    const districtData = getDistrictData(`${region}`);
-    if (!districtData)
-      throw new Error(`Failed to get districts from ${region}`);
-    setDistricts("districtData");
+  useEffect(() => {
+    if (!searchValues?.ward) return;
 
-    // Get wards
-    // const wardData = getWardData(`${region}`, {districtData.map((d) => )});
-  }, [region, route, cookiesStatus]);
+    const fetchGeo = async () => {
+      try {
+        const data = await getGeoData(`${searchValues.ward}`);
+        console.log("Geo Data:", data);
+        setGeoData(data);
+      } catch (err) {
+        console.error("Failed to load geo data:", err);
+        setError("Failed to load geo data.");
+      }
+    };
+
+    fetchGeo();
+  }, [searchValues]);
 
   return (
     <div className="min-h-screen px-4">
       <Header />
-      <h1 className="mb-5 font-bold text-3xl text-center w-full">{region}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
-        {districts.map((d) => (
-          <Card key={d.postcode}>
-            <CardHeader>
-              <CardTitle>{d.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Postcode: {d.postcode}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+
+      {/* Display search values */}
+      {searchValues && (
+        <div className="my-4 p-4 bg-gray-100 rounded">
+          <h2 className="text-lg font-bold mb-2">Search Values:</h2>
+          <pre>{JSON.stringify(searchValues, null, 2)}</pre>
+        </div>
+      )}
+
+      {/* Display geo data */}
+      {geoData && (
+        <div className="my-4 p-4 bg-gray-100 rounded">
+          <h2 className="text-lg font-bold mb-2">Geo Data:</h2>
+          <pre>{JSON.stringify(geoData, null, 2)}</pre>
+        </div>
+      )}
+
+      {/* Display error if any */}
+      {error && (
+        <div className="my-4 p-4 bg-red-100 text-red-700 rounded">{error}</div>
+      )}
     </div>
   );
 }
