@@ -2,7 +2,7 @@ declare module "tz-geo-data" {
   export function getAllRegions(): Array<{ region: string; postcode: string }>;
   export function getDistrictData(
     region: string
-  ): Array<{ district: string; postcode: string }>;
+  ): Array<{ name: string; postcode: string }>;
   export function getWardData(
     district: string
   ): Array<{ ward: string; postcode: string }>;

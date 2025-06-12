@@ -2,10 +2,13 @@
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { deleteCookie, hasCookie } from "cookies-next";
 import { AlertCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
+  // cookies management
+  if (hasCookie("search")) deleteCookie("search");
   const route = useRouter();
   return (
     <div className="min-h-screen">

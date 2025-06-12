@@ -21,9 +21,9 @@ import { getDistrictData } from "tz-geo-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
-  const cookiesStatus = hasCookie("regionSelected");
+  const cookiesStatus = hasCookie("search");
   const route = useRouter();
-  const region = getCookie("regionSelected");
+  const region = getCookie("search");
   const [districts, setDistricts] = useState<District[]>([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function Home() {
     const districtData = getDistrictData(`${region}`);
     if (!districtData)
       throw new Error(`Failed to get districts from ${region}`);
-    setDistricts(districtData);
+    setDistricts("districtData");
 
     // Get wards
     // const wardData = getWardData(`${region}`, {districtData.map((d) => )});
