@@ -137,7 +137,7 @@ export default function Home() {
               </h1>
               <Badge>{geoData.regionPostcode}</Badge>
             </CardTitle>
-            <CardDescription className="font-bold text-lg md:text-xl">
+            <CardDescription className="font-bold">
               <p>{geoData.region}</p>
             </CardDescription>
           </CardContent>
@@ -152,7 +152,7 @@ export default function Home() {
               </h1>
               <Badge>{geoData.districtPostcode}</Badge>
             </CardTitle>
-            <CardDescription className="font-bold text-lg md:text-xl">
+            <CardDescription className="font-bold">
               <p>{geoData.district}</p>
             </CardDescription>
           </CardContent>
@@ -167,7 +167,7 @@ export default function Home() {
               </h1>
               <Badge>{geoData.wardPostcode}</Badge>
             </CardTitle>
-            <CardDescription className="font-bold text-lg md:text-xl">
+            <CardDescription className="font-bold">
               <p>{geoData.ward}</p>
             </CardDescription>
           </CardContent>
