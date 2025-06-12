@@ -18,7 +18,6 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -138,7 +137,7 @@ export default function Home() {
               </h1>
               <Badge>{geoData.regionPostcode}</Badge>
             </CardTitle>
-            <CardDescription className="font-bold text-2xl">
+            <CardDescription className="font-bold text-lg md:text-xl">
               <p>{geoData.region}</p>
             </CardDescription>
           </CardContent>
@@ -153,7 +152,7 @@ export default function Home() {
               </h1>
               <Badge>{geoData.districtPostcode}</Badge>
             </CardTitle>
-            <CardDescription className="font-bold text-2xl">
+            <CardDescription className="font-bold text-lg md:text-xl">
               <p>{geoData.district}</p>
             </CardDescription>
           </CardContent>
@@ -168,7 +167,7 @@ export default function Home() {
               </h1>
               <Badge>{geoData.wardPostcode}</Badge>
             </CardTitle>
-            <CardDescription className="font-bold text-2xl">
+            <CardDescription className="font-bold text-lg md:text-xl">
               <p>{geoData.ward}</p>
             </CardDescription>
           </CardContent>
@@ -199,13 +198,11 @@ function StreetCard({ street }: { street: Street }) {
         <Card>
           <CardHeader>
             <CardTitle>{street.name}</CardTitle>
-            <CardDescription>
-              The street has {street.places.length} known places/centers
-            </CardDescription>
+            <CardDescription>Centers at {street.name}</CardDescription>
           </CardHeader>
           <CardContent>
             <Command>
-              <CommandInput placeholder="Quick search" />
+              {/* <CommandInput placeholder="Quick search" /> */}
               <CommandList>
                 <CommandEmpty>--No center found--</CommandEmpty>
                 <CommandGroup>
