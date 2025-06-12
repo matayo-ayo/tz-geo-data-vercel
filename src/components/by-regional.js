@@ -167,7 +167,7 @@ export default function Regional() {
                 <SelectTrigger className="w-full">
                   <SelectValue
                     placeholder={
-                      !region
+                      !district
                         ? "No Dirstict selected"
                         : "-- Select Ward / Chagua Kata --"
                     }

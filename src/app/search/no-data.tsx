@@ -17,6 +17,7 @@ export default function NoDatFound() {
             Unable to proces your search
             <Button
               variant="destructive"
+              className="cursor-pointer"
               onClick={() => {
                 route.push("/");
               }}

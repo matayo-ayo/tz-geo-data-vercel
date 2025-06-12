@@ -20,6 +20,7 @@ export default function Home() {
             This page may have been moved or might never have existed.
             <Button
               variant="destructive"
+              className="cursor-pointer"
               onClick={() => {
                 route.back();
               }}
