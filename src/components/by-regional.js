@@ -45,7 +45,6 @@ export default function Regional() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (region != "") {
-      setIsLoading(true);
       setCookie(
         "search",
         { region, district, ward },
@@ -53,12 +52,13 @@ export default function Regional() {
           maxAge: 60 * 1,
         }
       );
+      setIsLoading(true);
       route.push(`/search`);
     } else {
       toast("Complete secection to continue", {
         description: "Kamilisha machaguo kuendelea.",
       });
-      setError("Incomplete selection");
+      setError("Invalid selection");
     }
   };
 
@@ -91,6 +91,7 @@ export default function Regional() {
                 value={region}
                 onValueChange={(e) => {
                   setRegion(e);
+                  setError(null);
                   setDistrict("");
                 }}
                 required
