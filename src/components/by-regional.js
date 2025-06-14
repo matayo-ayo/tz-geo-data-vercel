@@ -45,6 +45,7 @@ export default function Regional() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (region != "") {
+      setIsLoading(true);
       setCookie(
         "search",
         { region, district, ward },
@@ -54,11 +55,10 @@ export default function Regional() {
       );
       route.push(`/search`);
     } else {
-      toast("Please select a region to continue", {
-        description: "Tafadhali chagua mkoa kuendelea.",
+      toast("Complete secection to continue", {
+        description: "Kamilisha machaguo kuendelea.",
       });
-      setError("Region not selected");
-      route.push("/api/route.js");
+      setError("Incomplete selection");
     }
   };
 
