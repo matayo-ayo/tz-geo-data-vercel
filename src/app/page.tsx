@@ -4,7 +4,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Header from "@/components/header";
 import ByRegional from "@/components/by-regional";
 import ByPostcode from "@/components/by-postcode";
-import ByName from "@/components/by-name";
 
 import Link from "next/link";
 
