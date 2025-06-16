@@ -70,7 +70,7 @@ export default function Home() {
 
         const searchValues = JSON.parse(rawSearchValues.toString());
         if (!searchValues?.ward) {
-          throw new Error("Ward missing in search data");
+          throw new Error("Failed to process the search");
         }
 
         const result: ApiResponse = await getGeoData(searchValues.ward);
@@ -110,10 +110,9 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen px-4">
-        <Header />
-        <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="h-screen w-full flex justify-center items-center">
+        <div className="flex justify-center items-center h-64 animate-bounce">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-6 border-b-6 border-gray-500"></div>
         </div>
       </div>
     );
