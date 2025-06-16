@@ -12,7 +12,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Header />
       <div className="container mx-auto max-w-md px-4 py-8 flex flex-col items-center justify-center min-h-[calc(100vh-50px)]">
-        <h1 className="mb-10 font-bold text-3xl">tz-geo-data</h1>
+        <h1 className="mb-10 font-bold text-3xl">Tanzania Geo Data</h1>
         <Tabs className="w-full" defaultValue="byRegional">
           <TabsList className="w-full gap-3 mb-5">
             <TabsTrigger value="byRegional">Regional</TabsTrigger>
