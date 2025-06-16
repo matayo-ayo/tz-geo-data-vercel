@@ -91,6 +91,7 @@ export default function Regional() {
                 onValueChange={(e) => {
                   setRegion(e);
                   setDistrict("");
+                  setIsLoading(false);
                 }}
                 required
               >
@@ -122,6 +123,7 @@ export default function Regional() {
                 onValueChange={(e) => {
                   setDistrict(e);
                   setWard("");
+                  setIsLoading(false);
                 }}
                 required
                 disabled={!region}
@@ -159,6 +161,7 @@ export default function Regional() {
                 value={ward}
                 onValueChange={(e) => {
                   setWard(e);
+                  setIsLoading(false);
                 }}
                 required
                 disabled={!district}
@@ -194,6 +197,7 @@ export default function Regional() {
               onClick={() => {
                 setIsLoading(true);
               }}
+              disabled={!ward}
             >
               {isLoading ? "Searching" : "Search"}
             </Button>
