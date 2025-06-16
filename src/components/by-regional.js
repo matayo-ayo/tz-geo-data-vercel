@@ -54,11 +54,10 @@ export default function Regional() {
       );
       route.push(`/search`);
     } else {
-      toast("Please select a region to continue", {
-        description: "Tafadhali chagua mkoa kuendelea.",
+      toast("No region selected", {
+        description: "Hakuna mkoa uliochaguliwa",
       });
-      setError("Region not selected");
-      route.push("/api/route.js");
+      setError("Invalid Selection");
     }
   };
 
@@ -192,6 +191,9 @@ export default function Regional() {
           <CardFooter>
             <Button
               className={isLoading ? "opacity-20 cursor-not-allowed" : ""}
+              onClick={() => {
+                setIsLoading(true);
+              }}
             >
               {isLoading ? "Searching" : "Search"}
             </Button>
