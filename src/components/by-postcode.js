@@ -10,16 +10,32 @@ import {
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 export default function Postcode() {
-  const [postcode, setPostcode] = useState("");
+  const [ward, setWard] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const route = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError(null);
+    if (ward != "") {
+      setCookie(
+        "search",
+        { ward },
+        {
+          maxAge: 60 * 1,
+        }
+      );
+      route.push(`/search`);
+    } else {
+      toast("Incorrect postcode", {
+        description: "Postikodi si sahihi",
+      });
+      setError("Invalid postcode");
+    }
   };
 
   return (
@@ -41,24 +57,25 @@ export default function Postcode() {
               Postcode / <span className="text-gray-500">Postikodi</span>
             </Label>
             <Input
-              name="postcode"
-              id="postcode"
+              name="ward"
+              id="ward"
               placeholder="Postcode / Postikodi"
               pattern="[0-9]{2,5}"
               inputMode="numeric"
               title="Please use 2 to 5 digits"
               required
               autoComplete="off"
-              value={postcode}
+              value={ward}
               onChange={(e) => {
-                setPostcode(e.target.value);
+                setWard(e.target.value);
+                setIsLoading(false);
               }}
             />
           </CardContent>
           <CardFooter>
             <Button
               type="submit"
-              disabled={isLoading}
+              disabled={!ward}
               className={isLoading ? "opacity-20 cursor-not-allowed" : ""}
             >
               {isLoading ? "Searching..." : "Search"}

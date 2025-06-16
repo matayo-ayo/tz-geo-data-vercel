@@ -96,7 +96,6 @@ export default function Home() {
 
         setGeoData(transformedData);
       } catch (err) {
-        console.error("Error fetching geo data:", err);
         setError(
           err instanceof Error ? err.message : "Failed to load location data"
         );
@@ -119,7 +118,7 @@ export default function Home() {
   }
 
   if (error || !geoData) {
-    return <NoDatFound />;
+    return <NoDatFound msg={error} />;
   }
 
   return (

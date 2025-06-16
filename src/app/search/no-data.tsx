@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 import { AlertCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function NoDatFound() {
+interface Error {
+  msg: string;
+}
+
+export default function NoDatFound({ msg }: Error) {
   const route = useRouter();
   return (
     <>
@@ -14,7 +18,7 @@ export default function NoDatFound() {
           <AlertCircleIcon />
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>
-            Unable to proces your search
+            {msg}
             <Button
               variant="destructive"
               className="cursor-pointer"
