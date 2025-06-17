@@ -175,7 +175,7 @@ export default function Home() {
       {/* Streets Information */}
       {geoData.streets?.length > 0 && (
         <div className="mt-5">
-          <h2 className="font-bold text-gray-800 mb-4 uppercase">
+          <h2 className="font-bold text-gray-500 dark:text-gray-400 mb-4 uppercase">
             Streets in {geoData.ward}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
